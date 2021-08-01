@@ -11,7 +11,7 @@
 
 ### 2. Import project into Intellij IDEA Ultimate
 
-### 5. Update MySQL connection configurations into application.properties available in src/main/java/resources
+### 3. Update MySQL connection configurations into application.properties available in src/main/java/resources
 
 ```
 # MySQL connection configurations
@@ -27,9 +27,57 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDial
 # http://localhost:8080/swagger-ui.html#
 ```
 
-### 6. Please install Tomcat to run the application locally
+### 4. Please install Tomcat to run the application locally
 
-### 9. As you see UserServiceImpl have have posibility where you can ADD, GET ALL, DELETE, UPDATE, LOGIN, FIND BY UUID TOKEN and GET USER PERSONAL DATA
+### 5. As you see UserServiceImpl have the possibility: ADD, GET ALL, DELETE, UPDATE, LOGIN, FIND BY UUID TOKEN and GET USER PERSONAL DATA
+
+### 6.To ADD user with personal data, use following url with `POST` request type in Postman and select Body->Json and post something like this:
+
+```
+http://localhost:8080/rest/user
+
+{
+    "userName": "Don Juan",
+    "email": "don.juan@seznam.cz",
+    "password": 999666,
+    "personalData": {
+        "dateOfBirthday": "00.00.0000",
+        "address": "Prague 9",
+        "phoneNumber": "666 999 666"
+        }
+}
+```
+
+
+### 7.To GET all users with personal data, use following url with `GET` request type in Postman
+
+```
+http://localhost:8080/rest/users
+```
+
+### 8.To UPDATE user by ID with personal data, use following url with `PUT` request type in Postman and update with Body->Json existing information
+
+```
+http://localhost:8080/rest/user
+
+{
+        "userName": "Maria Antuaneta",
+        "email": "maria.antuaneta@seznam.cz",
+        "password": "777"
+        "personalData": {
+            "dateOfBirthday": "2.11.1975",
+            "address": "Prague 1",
+            "phoneNumber": "777 777 777"
+        }
+    }
+```
+### 9.To DELETE user by ID with personal data, use following url with `DELETE` request type in Postman
+
+```
+http://localhost:8080/rest/user/1
+```
+### 10.User personal Data have security access, firstly you need to do login to get access token and 
+secondly, you will need to enter this token in the url field
 
 
 
