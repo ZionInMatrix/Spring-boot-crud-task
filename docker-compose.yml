@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  #MySQL
+    db:
+      container_name: springbootcrud.mysql
+      image: mysql:8.0
+      environment:
+        - MYSQL_ROOT_PASSWORD="yourpasswd"
+        - MYSQL_ALLOW_EMPTY_PASSWORD="yourpasswd"
+        - MYSQL_RANDOM_ROOT_PASSWORD="yourpasswd"
+        - MYSQL_PASSWORD="yourpasswd"
+        - MYSQL_USERNAME="root"
+        - MYSQL_DATABASE="FunTaskProject"
+      ports:
+        - "8080:8080"
