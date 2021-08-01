@@ -1,2 +1,1 @@
-# spring-boot-crud-task
-Task project
+# Java CRUD-Spring-Boot-JPA-MySQL
