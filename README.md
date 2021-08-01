@@ -37,7 +37,7 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDial
 http://localhost:8080/rest/user
 
 {
-    "userName": "Don Juan",
+    "userName": "Don",
     "email": "don.juan@seznam.cz",
     "password": 999666,
     "personalData": {
@@ -61,7 +61,7 @@ http://localhost:8080/rest/users
 http://localhost:8080/rest/user
 
 {
-        "userName": "Maria Antuaneta",
+        "userName": "Maria",
         "email": "maria.antuaneta@seznam.cz",
         "password": "777"
         "personalData": {
@@ -77,14 +77,19 @@ http://localhost:8080/rest/user
 http://localhost:8080/rest/user/1
 ```
 ### 10. User personal Data have security access, firstly you need to do login to GET access token and secondly, you will need to enter this token in the request   
-### type and authorization with Bearer in Postman to GET user personal data without information about the user. Use Params Key and Value in it
+### type and authorization with Bearer Token in Postman to GET user personal data without information about the user. Use Params Key and Value in it
 
 ```
-http://localhost:8080/token?userName=Kristina&password=234
+http://localhost:8080/token?userName=Maria&password=777
 
 Params: 
 KEY: userName, password
-VALUE: Maria Antuaneta, 777
+VALUE: Maria, 777
+```
+```
+http://localhost:8080/api/user/data/b50c1672-7df7-4da0-a756-9034cdeb7261
+
+Authorization->BearerToken->b50c1672-7df7-4da0-a756-9034cdeb7261
 ```
 
 
