@@ -77,7 +77,8 @@ http://localhost:8080/rest/user
 http://localhost:8080/rest/user/1
 ```
 ### 10. User personal Data have security access, firstly you need to do login to GET access token and 
-secondly, you will need to enter this token in the request type in Postman to GET user personal data without information about the user. Use Params Key and Value in it
+### secondly, you will need to enter this token in the request type in Postman to GET user personal data without information about the user. Use Params Key and 
+### Value in it
 
 ```
 http://localhost:8080/token?userName=Kristina&password=234
