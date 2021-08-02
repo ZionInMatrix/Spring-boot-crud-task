@@ -2,7 +2,9 @@ package cz.homeoffice.funtaskproject.services.implementations;
 
 import cz.homeoffice.funtaskproject.convertors.PersonalDataConvertor;
 import cz.homeoffice.funtaskproject.entity.PersonalDataDao;
+import cz.homeoffice.funtaskproject.entity.UserDao;
 import cz.homeoffice.funtaskproject.repositories.PersonalDataRepository;
+import cz.homeoffice.funtaskproject.repositories.UserRepository;
 import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
 import cz.homeoffice.funtaskproject.services.exceptions.PersonalDataServiceException;
 import org.easymock.EasyMockRunner;
@@ -27,6 +29,9 @@ public class PersonalDataServiceImplTest {
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
+
+    @Mock
+    public UserRepository userRepository;
 
     @Mock
     private PersonalDataRepository personalDataRepository;
@@ -241,5 +246,31 @@ public class PersonalDataServiceImplTest {
         assertEquals(dao1.getDateOfBirthday(), personalDataRest.getDateOfBirthday());
         assertEquals(dao1.getPhoneNumber(), personalDataRest.getPhoneNumber());
         assertEquals(dao1.getDateOfCreation(), personalDataRest.getDateOfCreation());
+    }
+
+    @Test
+    public void getUserPersonalDataByAccessToken() {
+        PersonalDataDao personalDataDao = new PersonalDataDao();
+        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setDateOfBirthday("11.1.1981");
+        personalDataDao.setDateOfCreation(LocalDate.now());
+        personalDataDao.setPhoneNumber("+420 777 777 777");
+
+        UserDao dao = new UserDao();
+        dao.setId(1);
+        dao.setUserName("Jana");
+        dao.setEmail("bomba@bubu.cz");
+        dao.setAccessToken("jdlsfajajdfl");
+        dao.setPassword("123");
+        dao.setPersonalData(personalDataDao);
+
+        expect(userRepository.findByAccessToken(anyString())).andReturn(Optional.of(dao));
+
+        replay(userRepository);
+
+        personalDataService.getPersonalDataById(anyInt());
+
+        verify(userRepository);
+
     }
 }

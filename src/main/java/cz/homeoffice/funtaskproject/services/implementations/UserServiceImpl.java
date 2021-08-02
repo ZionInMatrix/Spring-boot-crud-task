@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Integer id) {
         if (!userRepository.findById(id).isPresent()) {
-            throw new UserServiceException("Can't find the id number");
+            throw new UserServiceException("The id number isn't found");
         }
         logger.info("Deleting user");
         userRepository.deleteById(id);
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserRest updateUser(Integer id, UserRest userRest) {
         if (!userRepository.findById(id).isPresent()) {
-            throw new UserServiceException("Can't find the id number");
+            throw new UserServiceException("The id number isn't found");
         }
         UserDao dao = userConvertor.toDao(id, userRest);
         UserDao save = userRepository.save(dao);
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
     public PersonalDataRest getUserPersonalDataByAccessToken(String accessToken) {
         Optional<UserDao> userDao = userRepository.findByAccessToken(accessToken);
         if (!userDao.isPresent()) {
-            throw new UserServiceException("Can't find the id number");
+            throw new UserServiceException("The id number isn't found");
         }
         return personalDataService.getPersonalDataById(userDao.get().getPersonalData().getId());
     }
