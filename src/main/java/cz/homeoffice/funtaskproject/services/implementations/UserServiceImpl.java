@@ -40,8 +40,10 @@ public class UserServiceImpl implements UserService {
     private PersonalDataService personalDataService;
 
     /**
-     * @param userRest
-     * @return
+     * This method will add User to the UserDao
+     *
+     * @param userRest will return
+     * @return converted UserDao to UserRest
      */
 
     @Override
@@ -62,7 +64,9 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @return
+     * this method will get all Users from UserDao
+     *
+     * @return converted UserDaos to UserRests
      */
     @Override
     public List<UserRest> getUsers() {
@@ -71,7 +75,9 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param id
+     * this method will delete User from UserDao by ID
+     *
+     * @param id required parameter
      */
     @Override
     public void deleteUserById(Integer id) {
@@ -83,9 +89,11 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param id
-     * @param userRest
-     * @return
+     * this method will update the user from the UserDao
+     *
+     * @param id       required parameter
+     * @param userRest will return
+     * @return converted saved UserDao to UserRest
      */
     @Override
     public UserRest updateUser(Integer id, UserRest userRest) {
@@ -98,9 +106,11 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param username
-     * @param password
-     * @return
+     * method will get the regenerated UUID access token by password and username
+     *
+     * @param username required parameter
+     * @param password required parameter
+     * @return UUID access token
      */
     @Override
     public String login(String username, String password) {
@@ -117,8 +127,10 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param token
-     * @return
+     * this method will find by UUID access token in the UserDao and return new User
+     *
+     * @param token required parameter
+     * @return new User
      */
     @Override
     public Optional<User> findByToken(String token) {
@@ -133,9 +145,10 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * this method will get User personal data
      *
-     * @param accessToken
-     * @return
+     * @param accessToken required parameter
+     * @return personal user data by user access token and personal data id
      */
     @Override
     public PersonalDataRest getUserPersonalDataByAccessToken(String accessToken) {

@@ -30,8 +30,10 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     private PersonalDataConvertor personalDataConvertor;
 
     /**
-     * @param personalDataRest
-     * @return
+     * This method will add personal data to the PersonalDataDao
+     *
+     * @param personalDataRest will return
+     * @return converted PersonalDataDao to PersonalDataRest
      */
     @Override
     public PersonalDataRest addPersonalData(PersonalDataRest personalDataRest) {
@@ -44,7 +46,9 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     /**
-     * @return
+     * this method will get all PersonalData from PersonalDataDao
+     *
+     * @return converted PersonalDataDao to PersonalDataRest
      */
     @Override
     public List<PersonalDataRest> getAllPersonalData() {
@@ -53,8 +57,10 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     /**
-     * @param id
-     * @return
+     * this method will get PersonalData from PersonalDataDao by ID
+     *
+     * @param id required parameter
+     * @return converted PersonalDataDao to PersonalDataRest
      */
     @Override
     public PersonalDataRest getPersonalDataById(Integer id) {
@@ -67,7 +73,9 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     /**
-     * @param id
+     * this method will PersonalDataDao by ID
+     *
+     * @param id required parameter
      */
     @Override
     public void deletePersonalDataById(Integer id) {
@@ -79,9 +87,11 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     }
 
     /**
-     * @param id
-     * @param personalDataRest
-     * @return
+     * this method will update the PersonalData from PersonalDataDao by ID
+     *
+     * @param id               required parameter
+     * @param personalDataRest required parameter
+     * @return converted PersonalDataDao to PersonalDataRest
      */
     @Override
     public PersonalDataRest updatePersonalDataById(Integer id, PersonalDataRest personalDataRest) {
