@@ -2,7 +2,6 @@ package cz.homeoffice.funtaskproject.rest.controllers;
 
 import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
 import cz.homeoffice.funtaskproject.rest.models.UserRest;
-import cz.homeoffice.funtaskproject.services.PersonalDataService;
 import cz.homeoffice.funtaskproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,12 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "rest/user", method = RequestMethod.POST)
     private UserRest addUser(@RequestBody UserRest userRest) {
         return userService.addUser(userRest);
     }
 
-    @RequestMapping(value = "rest/user", method = RequestMethod.GET)
+    @RequestMapping(value = "rest/users", method = RequestMethod.GET)
     private List<UserRest> getAllUsers() {
         return userService.getUsers();
     }

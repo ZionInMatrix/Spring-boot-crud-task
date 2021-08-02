@@ -22,9 +22,6 @@ spring.datasource.password=yourpasswd
 #spring.jpa.show-sql=false
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-
-# To access SWAGGER use --->
-# http://localhost:8080/swagger-ui.html#
 ```
 
 ### 4. Please install Tomcat to run the application locally
@@ -89,7 +86,13 @@ VALUE: Maria, 777
 ```
 http://localhost:8080/api/user/data/b50c1672-7df7-4da0-a756-9034cdeb7261
 
-Authorization->BearerToken->b50c1672-7df7-4da0-a756-9034cdeb7261
+Authorization -> BearerToken->b50c1672-7df7-4da0-a756-9034cdeb7261
+```
+
+### 11. To access SWAGGER use:
+
+```
+# http://localhost:8080/swagger-ui.html#
 ```
 
 
