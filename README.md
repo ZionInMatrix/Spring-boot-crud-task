@@ -1,9 +1,9 @@
 # Java CRUD-Spring-Boot-JPA-MySQL
 
 
-# CRUD Example of Spring-Boot-REST-JPA-MySQL (User personal data with access by UUID Token)
+# CRUD Spring-Boot-REST-JPA-MySQL (User with personal data accessing by UUID access token)
 
-### 1. You can clone it from GiHhub by running following command
+### 1. You can clone it from GitHub by running following command
 
 ```
   $ git clone https://github.com/ZionInMatrix/spring-boot-crud-task.git
@@ -94,6 +94,8 @@ Authorization -> BearerToken->b50c1672-7df7-4da0-a756-9034cdeb7261
 ```
 # http://localhost:8080/swagger-ui.html#
 ```
+
+### 12. Docker....
 
 
 

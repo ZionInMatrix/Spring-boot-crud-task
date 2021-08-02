@@ -44,7 +44,7 @@ public class UserServiceImplTest {
     @Test
     public void addUser() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
@@ -85,7 +85,7 @@ public class UserServiceImplTest {
     @Test
     public void getUsers() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
@@ -142,7 +142,7 @@ public class UserServiceImplTest {
     @Test
     public void deleteUserById() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
@@ -183,7 +183,7 @@ public class UserServiceImplTest {
     @Test
     public void updateUser() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
@@ -245,7 +245,8 @@ public class UserServiceImplTest {
     @Test
     public void login() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setId(1);
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
@@ -258,21 +259,38 @@ public class UserServiceImplTest {
         dao.setPassword("123");
         dao.setPersonalData(personalDataDao);
 
-        expect(userRepository.login("Jana","123")).andReturn(Optional.of(dao));
-        expect(userRepository.save(dao));
-        expectLastCall();
+        expect(userRepository.login(anyString(), anyString())).andReturn(Optional.of(dao));
+        expect(userRepository.save(dao)).andReturn(dao);
 
         replay(userRepository);
 
-        userService.login("Jana","123");
+        userService.login(anyString(), anyString());
 
         verify(userRepository);
-
-
     }
 
     @Test
     public void findByToken() {
+        PersonalDataDao personalDataDao = new PersonalDataDao();
+        personalDataDao.setAddress("Plzenska 1311, 150 00, Praha 5");
+        personalDataDao.setDateOfBirthday("11.1.1981");
+        personalDataDao.setDateOfCreation(LocalDate.now());
+        personalDataDao.setPhoneNumber("+420 777 777 777");
+
+        UserDao dao = new UserDao();
+        dao.setUserName("Jana");
+        dao.setEmail("bomba@bubu.cz");
+        dao.setAccessToken(UUID.randomUUID().toString());
+        dao.setPassword("123");
+        dao.setPersonalData(personalDataDao);
+
+        expect(userRepository.findByAccessToken(anyObject())).andReturn(Optional.of(dao));
+
+        replay(userRepository);
+
+        userService.findByToken(anyObject());
+
+        verify(userRepository);
 
     }
 }

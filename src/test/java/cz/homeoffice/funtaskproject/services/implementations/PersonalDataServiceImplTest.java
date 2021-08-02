@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
@@ -214,18 +215,18 @@ public class PersonalDataServiceImplTest {
         rest.setPhoneNumber("+420 999 777 777");
 
         PersonalDataDao dao1 = new PersonalDataDao();
-        dao.setId(1);
-        dao.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("12.2.1981");
-        dao.setDateOfCreation(LocalDate.now());
-        dao.setPhoneNumber("+420 999 777 777");
+        dao1.setId(1);
+        dao1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
+        dao1.setDateOfBirthday("12.2.1981");
+        dao1.setDateOfCreation(LocalDate.now());
+        dao1.setPhoneNumber("+420 999 777 777");
 
         PersonalDataRest rest1 = new PersonalDataRest();
-        rest.setId(1);
-        rest.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        rest.setDateOfBirthday("12.2.1981");
-        rest.setDateOfCreation(LocalDate.now());
-        rest.setPhoneNumber("+420 999 777 777");
+        rest1.setId(1);
+        rest1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
+        rest1.setDateOfBirthday("12.2.1981");
+        rest1.setDateOfCreation(LocalDate.now());
+        rest1.setPhoneNumber("+420 999 777 777");
 
 
         expect(personalDataRepository.findById(1)).andReturn(Optional.of(dao));
@@ -251,26 +252,46 @@ public class PersonalDataServiceImplTest {
     @Test
     public void getUserPersonalDataByAccessToken() {
         PersonalDataDao personalDataDao = new PersonalDataDao();
-        personalDataDao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
+        personalDataDao.setId(1);
+        personalDataDao.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
         personalDataDao.setDateOfBirthday("11.1.1981");
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
+
+        PersonalDataRest rest1 = new PersonalDataRest();
+        rest1.setId(1);
+        rest1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
+        rest1.setDateOfBirthday("11.1.1981");
+        rest1.setDateOfCreation(LocalDate.now());
+        rest1.setPhoneNumber("+420 777 777 777");
 
         UserDao dao = new UserDao();
         dao.setId(1);
         dao.setUserName("Jana");
         dao.setEmail("bomba@bubu.cz");
-        dao.setAccessToken("jdlsfajajdfl");
+        dao.setAccessToken(UUID.randomUUID().toString());
         dao.setPassword("123");
         dao.setPersonalData(personalDataDao);
 
-        expect(userRepository.findByAccessToken(anyString())).andReturn(Optional.of(dao));
+        expect(userRepository.findByAccessToken(anyObject())).andReturn(Optional.of(dao));
+        expect(personalDataRepository.findById(1)).andReturn(Optional.of(personalDataDao));
+        expect(personalDataConvertor.toRest(personalDataDao)).andReturn(rest1);
 
         replay(userRepository);
+        replay(personalDataRepository);
+        replay(personalDataConvertor);
 
-        personalDataService.getPersonalDataById(anyInt());
+        PersonalDataRest personalDataById = personalDataService.getPersonalDataById(1);
 
-        verify(userRepository);
+        verify(personalDataRepository);
+        verify(personalDataConvertor);
+
+        assertEquals(personalDataDao.getId(), personalDataById.getId());
+        assertEquals(personalDataDao.getAddress(), personalDataById.getAddress());
+        assertEquals(personalDataDao.getDateOfBirthday(), personalDataById.getDateOfBirthday());
+        assertEquals(personalDataDao.getPhoneNumber(), personalDataById.getPhoneNumber());
+        assertEquals(personalDataDao.getDateOfCreation(), personalDataById.getDateOfCreation());
+
 
     }
 }
