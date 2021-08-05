@@ -20,8 +20,9 @@ public class PersonalDataDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false)
-    private String dateOfBirthday;
+    private LocalDate dateOfBirthday;
 
     @Column(nullable = false)
     private String address;

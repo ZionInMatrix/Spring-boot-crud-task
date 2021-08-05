@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class PersonalDataRest {
 
     private Integer id;
-    private String dateOfBirthday;
+    private LocalDate dateOfBirthday;
     private String address;
     private String phoneNumber;
     private LocalDate dateOfCreation;

@@ -26,7 +26,8 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDial
 
 ### 4. Please install Tomcat to run the application locally
 
-### 5. As you see UserServiceImpl have the possibility: ADD, GET ALL, DELETE, UPDATE, LOGIN, FIND BY UUID TOKEN and GET USER PERSONAL DATA
+### 5. As you can see, UserServiceImpl have the possibility: ADD, GET ALL, DELETE, UPDATE, LOGIN, FIND BY UUID TOKEN and GET USER PERSONAL DATA
+And PersonalDataService: ADD, GET ALL, GET BY ID, DELETE BY ID, UPDATE BY ID.
 
 ### 6. To ADD user with personal data, use following url with `POST` request type in Postman and select Body->Json and post something like this:
 
@@ -46,7 +47,7 @@ http://localhost:8080/rest/user
 ```
 
 
-### 7. To GET all users with personal data, use following url with `GET` request type in Postman
+### 7. To GET all users with personal data, use following url with `GET` request type in Postman. 
 
 ```
 http://localhost:8080/rest/users
