@@ -39,7 +39,7 @@ http://localhost:8080/rest/user
     "email": "don.juan@seznam.cz",
     "password": 999666,
     "personalData": {
-        "dateOfBirthday": "00.00.0000",
+        "dateOfBirthday": "2021-06-22",
         "address": "Prague 9",
         "phoneNumber": "666 999 666"
         }
@@ -63,7 +63,7 @@ http://localhost:8080/rest/user
         "email": "maria.antuaneta@seznam.cz",
         "password": "777"
         "personalData": {
-            "dateOfBirthday": "2.11.1975",
+            "dateOfBirthday": "2021-06-22",
             "address": "Prague 1",
             "phoneNumber": "777 777 777"
         }
