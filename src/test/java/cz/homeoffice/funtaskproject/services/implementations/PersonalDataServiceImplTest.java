@@ -47,13 +47,13 @@ public class PersonalDataServiceImplTest {
     public void addPersonalData() {
         PersonalDataRest rest = new PersonalDataRest();
         rest.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        rest.setDateOfBirthday("11.1.1981");
+        rest.setDateOfBirthday(LocalDate.now());
         rest.setDateOfCreation(LocalDate.now());
         rest.setPhoneNumber("+420 777 777 777");
 
         PersonalDataDao dao = new PersonalDataDao();
         dao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("11.1.1981");
+        dao.setDateOfBirthday(LocalDate.now());
         dao.setDateOfCreation(LocalDate.now());
         dao.setPhoneNumber("+420 777 777 777");
 
@@ -79,7 +79,7 @@ public class PersonalDataServiceImplTest {
     public void getAllPersonalData() {
         PersonalDataDao dao = new PersonalDataDao();
         dao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("11.1.1981");
+        dao.setDateOfBirthday(LocalDate.now());
         dao.setDateOfCreation(LocalDate.now());
         dao.setPhoneNumber("+420 777 777 777");
 
@@ -89,7 +89,7 @@ public class PersonalDataServiceImplTest {
 
         PersonalDataRest rest = new PersonalDataRest();
         rest.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        rest.setDateOfBirthday("11.1.1981");
+        rest.setDateOfBirthday(LocalDate.now());
         rest.setDateOfCreation(LocalDate.now());
         rest.setPhoneNumber("+420 777 777 777");
 
@@ -125,13 +125,13 @@ public class PersonalDataServiceImplTest {
     public void getPersonalDataById() {
         PersonalDataDao dao = new PersonalDataDao();
         dao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("11.1.1981");
+        dao.setDateOfBirthday(LocalDate.now());
         dao.setDateOfCreation(LocalDate.now());
         dao.setPhoneNumber("+420 777 777 777");
 
         PersonalDataRest rest = new PersonalDataRest();
         rest.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        rest.setDateOfBirthday("11.1.1981");
+        rest.setDateOfBirthday(LocalDate.now());
         rest.setDateOfCreation(LocalDate.now());
         rest.setPhoneNumber("+420 777 777 777");
 
@@ -169,7 +169,7 @@ public class PersonalDataServiceImplTest {
     public void deletePersonalDataById() {
         PersonalDataDao dao = new PersonalDataDao();
         dao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("11.1.1981");
+        dao.setDateOfBirthday(LocalDate.now());
         dao.setDateOfCreation(LocalDate.now());
         dao.setPhoneNumber("+420 777 777 777");
 
@@ -203,28 +203,28 @@ public class PersonalDataServiceImplTest {
         PersonalDataDao dao = new PersonalDataDao();
         dao.setId(1);
         dao.setAddress("Musilkova 1311/5b, 150 00, Praha 5");
-        dao.setDateOfBirthday("11.1.1981");
+        dao.setDateOfBirthday(LocalDate.now());
         dao.setDateOfCreation(LocalDate.now());
         dao.setPhoneNumber("+420 777 777 777");
 
         PersonalDataRest rest = new PersonalDataRest();
         rest.setId(1);
         rest.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        rest.setDateOfBirthday("12.2.1981");
+        rest.setDateOfBirthday(LocalDate.now());
         rest.setDateOfCreation(LocalDate.now());
         rest.setPhoneNumber("+420 999 777 777");
 
         PersonalDataDao dao1 = new PersonalDataDao();
         dao1.setId(1);
         dao1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        dao1.setDateOfBirthday("12.2.1981");
+        dao1.setDateOfBirthday(LocalDate.now());
         dao1.setDateOfCreation(LocalDate.now());
         dao1.setPhoneNumber("+420 999 777 777");
 
         PersonalDataRest rest1 = new PersonalDataRest();
         rest1.setId(1);
         rest1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        rest1.setDateOfBirthday("12.2.1981");
+        rest1.setDateOfBirthday(LocalDate.now());
         rest1.setDateOfCreation(LocalDate.now());
         rest1.setPhoneNumber("+420 999 777 777");
 
@@ -254,14 +254,14 @@ public class PersonalDataServiceImplTest {
         PersonalDataDao personalDataDao = new PersonalDataDao();
         personalDataDao.setId(1);
         personalDataDao.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        personalDataDao.setDateOfBirthday("11.1.1981");
+        personalDataDao.setDateOfBirthday(LocalDate.now());
         personalDataDao.setDateOfCreation(LocalDate.now());
         personalDataDao.setPhoneNumber("+420 777 777 777");
 
         PersonalDataRest rest1 = new PersonalDataRest();
         rest1.setId(1);
         rest1.setAddress("Plzenska 1311/5b, 150 00, Praha 5");
-        rest1.setDateOfBirthday("11.1.1981");
+        rest1.setDateOfBirthday(LocalDate.now());
         rest1.setDateOfCreation(LocalDate.now());
         rest1.setPhoneNumber("+420 777 777 777");
 
