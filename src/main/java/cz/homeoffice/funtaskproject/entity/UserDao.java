@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -20,9 +22,11 @@ public class UserDao {
     @Column(nullable = false)
     private String userName;
 
+    @Size(min = 10, max = 30, message = "Password must be between 10 and 30 characters")
     @Column(nullable = false)
     private String password;
 
+    @Email(message = "Email should be valid")
     @Column(nullable = false)
     private String email;
 
