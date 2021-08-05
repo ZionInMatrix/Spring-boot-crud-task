@@ -96,7 +96,67 @@ Authorization -> BearerToken->b50c1672-7df7-4da0-a756-9034cdeb7261
 # http://localhost:8080/swagger-ui.html#
 ```
 
-### 12. Docker....
+### 12. Docker starting and runnig
+
+1. Verify the target directory(spring-boot-crud-task.jar)
+2. Creating the Dockerfile to create the docker image
+
+```
+FROM openjdk:12
+ADD target/spring-boot-crud-task.jar spring-boot-crud-task.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "spring-boot-crud-task.jar"]
+```
+
+3. Create the Docker Image using below command from the directory where Dockerfile is placed. This command instruct Docker to create the image of our application and tagged it as spring-boot-crud-task
+
+```
+docker build -t spring-boot-crud-task . 
+```
+
+4. Once the image is built, use the following command to view the list of images:
+
+```
+docker images
+```
+
+5. In order to start MySQL, we need MySQL Docker image. We can pull the same from Docker Hub. Note that Docker Hub is the repository which contains the images of existing software.
+
+```
+docker pull mysql:8.0.23
+```
+
+6. Once the pull is done, verify the list of images in local server using below command an entry of MySQL will be available
+
+```
+docker images
+```
+
+7. Following to this, we will run the MySQL server to run as a Docker container
+
+```
+docker run --name mysql-example -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:8.0.23
+```
+
+8. Verify the MySQL start up logs using the following command:
+
+```
+docker container logs mysql-example
+```
+
+9. Starting the application container. We can run our Sprint Boot application in the same manner using the following command:
+
+```
+docker run -d -p 8080:8080 -name user-mysql --link mysql-example:mysql user-mysql
+```
+
+10. Verify the application start up logs using the following command:
+
+```
+docker container logs user-mysql
+```
+
+11. Testing the REST API
 
 
 
