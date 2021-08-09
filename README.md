@@ -1,4 +1,4 @@
-# Java CRUD-Spring-Boot-JPA-MySQL
+# Java CRUD-Spring-Boot-MySQL
 
 
 # CRUD Spring-Boot-REST-JPA-MySQL (User with personal data accessing by UUID access token)
