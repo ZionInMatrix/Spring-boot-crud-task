@@ -1,7 +1,7 @@
-# Java CRUD-Spring-Boot-MySQL
+# Java CRUD-Spring-Boot-JPA-Hibernate-MySQL
 
 
-# CRUD Spring-Boot-REST-JPA-MySQL (User with personal data accessing by UUID access token)
+# CRUD Spring-Boot-REST-JPA-Hibernate-MySQL (User with personal data accessing by UUID access token)
 
 ### 1. You can clone it from GitHub by running following command
 
