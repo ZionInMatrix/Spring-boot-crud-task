@@ -1,7 +1,7 @@
 package cz.homeoffice.funtaskproject.services.implementations;
 
 import cz.homeoffice.funtaskproject.convertors.PersonalDataConvertor;
-import cz.homeoffice.funtaskproject.entity.PersonalDataDao;
+import cz.homeoffice.funtaskproject.entity.PersonalData;
 import cz.homeoffice.funtaskproject.repositories.PersonalDataRepository;
 import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
 import cz.homeoffice.funtaskproject.services.PersonalDataService;
@@ -39,9 +39,9 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     public PersonalDataRest addPersonalData(PersonalDataRest personalDataRest) {
         LocalDateTime ldt = LocalDateTime.now();
         personalDataRest.setDateOfCreation(LocalDate.parse(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)));
-        PersonalDataDao personalDataDao = personalDataConvertor.toDao(personalDataRest);
-        PersonalDataDao savedDao = personalDataRepository.save(personalDataDao);
-        logger.info("Adding user " + personalDataDao);
+        PersonalData personalData = personalDataConvertor.toDao(personalDataRest);
+        PersonalData savedDao = personalDataRepository.save(personalData);
+        logger.info("Adding user " + personalData);
         return personalDataConvertor.toRest(savedDao);
     }
 
@@ -64,7 +64,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
      */
     @Override
     public PersonalDataRest getPersonalDataById(Integer id) {
-        Optional<PersonalDataDao> dataDao = personalDataRepository.findById(id);
+        Optional<PersonalData> dataDao = personalDataRepository.findById(id);
         if (!dataDao.isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
@@ -98,8 +98,8 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         if (!personalDataRepository.findById(id).isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
-        PersonalDataDao dao = personalDataConvertor.toDao(id, personalDataRest);
-        PersonalDataDao save = personalDataRepository.save(dao);
+        PersonalData dao = personalDataConvertor.toDao(id, personalDataRest);
+        PersonalData save = personalDataRepository.save(dao);
         return personalDataConvertor.toRest(save);
     }
 }

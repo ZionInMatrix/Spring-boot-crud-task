@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Entity
 @Table(name = "USER")
-public class UserDao {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,5 @@ public class UserDao {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSONAL_DATA", referencedColumnName = "id")
-    private PersonalDataDao personalData;
+    private PersonalData personalData;
 }

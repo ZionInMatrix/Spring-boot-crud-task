@@ -1,6 +1,6 @@
 package cz.homeoffice.funtaskproject.convertors;
 
-import cz.homeoffice.funtaskproject.entity.UserDao;
+import cz.homeoffice.funtaskproject.entity.User;
 import cz.homeoffice.funtaskproject.rest.models.UserRest;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +10,8 @@ import java.util.List;
 @Component
 public class UserConvertor {
 
-    public UserDao toDao(UserRest rest) {
-        UserDao dao = new UserDao();
+    public User toDao(UserRest rest) {
+        User dao = new User();
         dao.setUserName(rest.getUserName());
         dao.setEmail(rest.getEmail());
         dao.setPassword(rest.getPassword());
@@ -20,7 +20,7 @@ public class UserConvertor {
         return dao;
     }
 
-    public UserRest toRest(UserDao dao) {
+    public UserRest toRest(User dao) {
         UserRest rest = new UserRest();
         rest.setId(dao.getId());
         rest.setUserName(dao.getUserName());
@@ -31,16 +31,16 @@ public class UserConvertor {
         return rest;
     }
 
-    public List<UserRest> toRest(Iterable<UserDao> daos) {
+    public List<UserRest> toRest(Iterable<User> daos) {
         List<UserRest> users = new ArrayList<>();
-        for (UserDao dao : daos) {
+        for (User dao : daos) {
             users.add(toRest(dao));
         }
         return users;
     }
 
-    public UserDao toDao(Integer id, UserRest userRest) {
-        UserDao dao = toDao(userRest);
+    public User toDao(Integer id, UserRest userRest) {
+        User dao = toDao(userRest);
         dao.setId(id);
         return dao;
     }

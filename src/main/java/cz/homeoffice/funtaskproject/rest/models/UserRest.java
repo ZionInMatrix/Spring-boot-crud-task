@@ -1,6 +1,6 @@
 package cz.homeoffice.funtaskproject.rest.models;
 
-import cz.homeoffice.funtaskproject.entity.PersonalDataDao;
+import cz.homeoffice.funtaskproject.entity.PersonalData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ public class UserRest {
     private String email;
     private String password;
     private String accessToken;
-    private PersonalDataDao personalData;
+    private PersonalData personalData;
 
     @Override
     public String toString() {

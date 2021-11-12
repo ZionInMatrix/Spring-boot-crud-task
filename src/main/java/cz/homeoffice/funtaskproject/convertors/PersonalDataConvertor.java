@@ -1,6 +1,6 @@
 package cz.homeoffice.funtaskproject.convertors;
 
-import cz.homeoffice.funtaskproject.entity.PersonalDataDao;
+import cz.homeoffice.funtaskproject.entity.PersonalData;
 import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +11,8 @@ import java.util.List;
 @Component
 public class PersonalDataConvertor {
 
-    public PersonalDataDao toDao(PersonalDataRest rest) {
-        PersonalDataDao dao = new PersonalDataDao();
+    public PersonalData toDao(PersonalDataRest rest) {
+        PersonalData dao = new PersonalData();
         dao.setDateOfBirthday(rest.getDateOfBirthday());
         dao.setAddress(rest.getAddress());
         dao.setPhoneNumber(rest.getPhoneNumber());
@@ -20,7 +20,7 @@ public class PersonalDataConvertor {
         return dao;
     }
 
-    public PersonalDataRest toRest(PersonalDataDao dao) {
+    public PersonalDataRest toRest(PersonalData dao) {
         PersonalDataRest rest = new PersonalDataRest();
         rest.setId(dao.getId());
         rest.setAddress(dao.getAddress());
@@ -30,16 +30,16 @@ public class PersonalDataConvertor {
         return rest;
     }
 
-    public List<PersonalDataRest> toRest(Iterable<PersonalDataDao> daos) {
+    public List<PersonalDataRest> toRest(Iterable<PersonalData> daos) {
         List<PersonalDataRest> dataRests = new ArrayList<>();
-        for (PersonalDataDao dao : daos) {
+        for (PersonalData dao : daos) {
             dataRests.add(toRest(dao));
         }
         return dataRests;
     }
 
-    public PersonalDataDao toDao(Integer id, PersonalDataRest dataRest) {
-        PersonalDataDao dao = toDao(dataRest);
+    public PersonalData toDao(Integer id, PersonalDataRest dataRest) {
+        PersonalData dao = toDao(dataRest);
         dao.setId(id);
         return dao;
     }
