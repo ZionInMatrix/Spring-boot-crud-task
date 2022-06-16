@@ -1,4 +1,4 @@
-package cz.homeoffice.taskproject.repositories;
+package cz.homeoffice.taskproject.repository;
 
 import cz.homeoffice.taskproject.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

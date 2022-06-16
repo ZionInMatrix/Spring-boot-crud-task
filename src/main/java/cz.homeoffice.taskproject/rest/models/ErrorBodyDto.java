@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 @Data
-public class ErrorBodyRest {
+public class ErrorBodyDto {
 
     private Integer httpCode;
     private HttpStatus httpStatus;

@@ -25,7 +25,7 @@ import static org.easymock.EasyMock.verify;
 import static org.junit.Assert.*;
 
 @RunWith(EasyMockRunner.class)
-public class UserServiceImplTest {
+public class UserServiceTest {
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();

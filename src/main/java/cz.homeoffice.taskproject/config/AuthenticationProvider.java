@@ -1,6 +1,7 @@
 package cz.homeoffice.taskproject.config;
 
-import cz.homeoffice.funtaskproject.services.UserService;
+import cz.homeoffice.taskproject.services.implementations.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class AuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails,

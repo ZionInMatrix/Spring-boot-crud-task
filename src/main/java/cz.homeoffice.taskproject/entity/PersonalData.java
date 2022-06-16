@@ -1,6 +1,7 @@
 package cz.homeoffice.taskproject.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,23 +18,20 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "PERSONAL_DATA")
 public class PersonalData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(nullable = false)
-    private LocalDate dateOfBirthday;
+    @Column(name = "BIRTHDAY")
+    private LocalDate birthday;
 
-    @Column(nullable = false)
+    @Column(name = "ADDRESS")
     private String address;
 
-    @Column(nullable = false)
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private LocalDate dateOfCreation;
 }

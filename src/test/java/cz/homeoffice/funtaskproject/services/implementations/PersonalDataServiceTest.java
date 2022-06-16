@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(EasyMockRunner.class)
-public class PersonalDataServiceImplTest {
+public class PersonalDataServiceTest {
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();

@@ -1,6 +1,7 @@
 package cz.homeoffice.taskproject.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,32 +14,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "USER_NAME")
     private String userName;
 
-    @Size(min = 10, max = 30, message = "Password must be between 10 and 30 characters")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Email(message = "Email should be valid")
+    @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "accessToken")
     private String accessToken;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PERSONAL_DATA", referencedColumnName = "id")
+    @JoinColumn(name = "PERSONAL_DATA", referencedColumnName = "ID")
     private PersonalData personalData;
 }
