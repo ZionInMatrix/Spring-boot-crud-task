@@ -30,12 +30,11 @@ public class UserService {
     private final PersonalDataService personalDataService;
 
     public UserDto addUser(UserDto userDto) {
-        UUID accessToken = UUID.randomUUID();
         PersonalData data = new PersonalData();
         data.setPhoneNumber(userDto.getPersonalData().getPhoneNumber());
         data.setBirthday(userDto.getPersonalData().getBirthday());
         data.setAddress(userDto.getPersonalData().getAddress());
-        userDto.setAccessToken(String.valueOf(accessToken));
+        userDto.setAccessToken(UUID.randomUUID().toString());
         User user = userConvertor.toDao(userDto);
         user.setPersonalData(data);
         User savedUser = userRepository.save(user);
@@ -45,20 +44,22 @@ public class UserService {
 
     public List<UserDto> getUsers() {
         log.info("Getting users");
-        return userRepository.findAll().stream().map(userConvertor::toDto).collect(Collectors.toList());
+        return userRepository.findAll().stream()
+                .map(userConvertor::toDto)
+                .collect(Collectors.toList());
     }
 
     public void deleteUserById(Long id) {
         if (!userRepository.findById(id.intValue()).isPresent()) {
             throw new UserServiceException("The id number isn't found");
         }
-        log.info("Deleting user");
+        log.info("Deleting user with id : " + id);
         userRepository.deleteById(id.intValue());
     }
 
     public UserDto updateUser(UserDto userDto) {
         if (!userRepository.findById(userDto.getId().intValue()).isPresent()) {
-            throw new UserServiceException("The id number isn't found");
+            throw new UserServiceException("The id number isn't found : " + userDto.getId());
         }
         User dao = userConvertor.toDao(userDto);
         User save = userRepository.save(dao);

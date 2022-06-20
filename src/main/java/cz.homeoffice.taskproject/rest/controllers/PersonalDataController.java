@@ -7,34 +7,34 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/data")
 @RequiredArgsConstructor
 @RestController
 public class PersonalDataController {
 
     private final PersonalDataService personalDataService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PostMapping("/add")
     private PersonalDataDto addPersonalData(@RequestBody PersonalDataDto personalDataRest) {
         return personalDataService.addPersonalData(personalDataRest);
     }
 
-    @RequestMapping(value = "/get-all", method = RequestMethod.GET)
+    @GetMapping("/api/get-all")
     private List<PersonalDataDto> getAllPersonalData() {
         return personalDataService.getAllPersonalData();
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @GetMapping("/api/get/{id}")
     private PersonalDataDto getPersonalDataById(@PathVariable("id") Long id) {
         return personalDataService.getPersonalDataById(id);
     }
 
-    @RequestMapping(value = "/delete-data/{id}", method = RequestMethod.DELETE)
+    @PostMapping("/api/delete-data/{id}")
     private void deletePersonalDataById(@PathVariable("id") Long id) {
         personalDataService.deletePersonalDataById(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PostMapping("/api/update")
     private PersonalDataDto updatePersonalDataById(@RequestBody PersonalDataDto personalDataDto) {
         return personalDataService.updatePersonalDataById(personalDataDto);
     }

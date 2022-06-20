@@ -1,6 +1,5 @@
 package cz.homeoffice.taskproject.rest.models;
 
-import cz.homeoffice.taskproject.entity.PersonalData;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
