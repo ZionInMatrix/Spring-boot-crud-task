@@ -1,10 +1,12 @@
-package cz.homeoffice.taskproject.services.implementations;
+package cz.homeoffice.taskproject.services;
 
 import cz.homeoffice.taskproject.convertors.UserConvertor;
 import cz.homeoffice.taskproject.entity.PersonalData;
+import cz.homeoffice.taskproject.entity.User;
 import cz.homeoffice.taskproject.repository.UserRepository;
+import cz.homeoffice.taskproject.rest.models.PersonalDataDto;
 import cz.homeoffice.taskproject.rest.models.UserDto;
-import cz.homeoffice.taskproject.services.exceptions.UserServiceException;
+import cz.homeoffice.taskproject.services.exception.UserServiceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -33,14 +35,12 @@ public class UserService {
 
     public UserDto addUser(UserDto userDto) {
         UUID accessToken = UUID.randomUUID();
-        LocalDateTime ldt = LocalDateTime.now();
         PersonalData data = new PersonalData();
-        data.setPhoneNumber(userRest.getPersonalData().getPhoneNumber());
-        data.setDateOfCreation(LocalDate.parse(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)));
-        data.setDateOfBirthday(userRest.getPersonalData().getDateOfBirthday());
-        data.setAddress(userRest.getPersonalData().getAddress());
-        userRest.setAccessToken(String.valueOf(accessToken));
-        User user = userConvertor.toDao(userRest);
+        data.setPhoneNumber(userDto.getPersonalData().getPhoneNumber());
+        data.setBirthday(userDto.getPersonalData().getBirthday());
+        data.setAddress(userDto.getPersonalData().getAddress());
+        userDto.setAccessToken(String.valueOf(accessToken));
+        User user = userConvertor.toDao(userDto);
         user.setPersonalData(data);
         User savedUser = userRepository.save(user);
         log.info("Adding user " + user);
@@ -52,19 +52,19 @@ public class UserService {
         return userRepository.findAll().stream().map(userConvertor::toDto).collect(Collectors.toList());
     }
 
-    public void deleteUserById(Integer id) {
-        if (!userRepository.findById(id).isPresent()) {
+    public void deleteUserById(Long id) {
+        if (!userRepository.findById(id.intValue()).isPresent()) {
             throw new UserServiceException("The id number isn't found");
         }
         log.info("Deleting user");
-        userRepository.deleteById(id);
+        userRepository.deleteById(id.intValue());
     }
 
-    public UserRest updateUser(Integer id, UserRest userRest) {
-        if (!userRepository.findById(id).isPresent()) {
+    public UserDto updateUser(UserDto userDto) {
+        if (!userRepository.findById(userDto.getId().intValue()).isPresent()) {
             throw new UserServiceException("The id number isn't found");
         }
-        User dao = userConvertor.toDao(id, userRest);
+        User dao = userConvertor.toDao(userDto);
         User save = userRepository.save(dao);
         return userConvertor.toDto(save);
     }
@@ -92,7 +92,7 @@ public class UserService {
         return Optional.empty();
     }
 
-    public PersonalDataRest getUserPersonalDataByAccessToken(String accessToken) {
+    public PersonalDataDto getUserPersonalDataByAccessToken(String accessToken) {
         Optional<User> userDao = userRepository.findByAccessToken(accessToken);
         if (!userDao.isPresent()) {
             throw new UserServiceException("The id number isn't found");

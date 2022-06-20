@@ -1,9 +1,9 @@
 package cz.homeoffice.taskproject.rest.controllers;
 
-import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
-import cz.homeoffice.funtaskproject.rest.models.UserRest;
-import cz.homeoffice.funtaskproject.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cz.homeoffice.taskproject.rest.models.PersonalDataDto;
+import cz.homeoffice.taskproject.rest.models.UserDto;
+import cz.homeoffice.taskproject.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,34 +14,34 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class UserRestController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @RequestMapping(value = "rest/user", method = RequestMethod.POST)
-    private UserRest addUser(@RequestBody UserRest userRest) {
-        return userService.addUser(userRest);
+    private UserDto addUser(@RequestBody UserDto userDto) {
+        return userService.addUser(userDto);
     }
 
     @RequestMapping(value = "rest/users", method = RequestMethod.GET)
-    private List<UserRest> getAllUsers() {
+    private List<UserDto> getAllUsers() {
         return userService.getUsers();
     }
 
     @RequestMapping(value = "/api/user/data/{accessToken}", method = RequestMethod.GET)
-    public PersonalDataRest getUserPersonalDataByAccessToken(@PathVariable String accessToken) {
+    public PersonalDataDto getUserPersonalDataByAccessToken(@PathVariable String accessToken) {
         return userService.getUserPersonalDataByAccessToken(accessToken);
     }
 
     @RequestMapping(value = "/rest/user/{id}", method = RequestMethod.DELETE)
-    private void deleteCustomerById(@PathVariable("id") Integer id) {
+    private void deleteCustomerById(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
     }
 
     @RequestMapping(value = "/rest/user/{id}", method = RequestMethod.PUT)
-    private UserRest updateCustomerById(@PathVariable("id") Integer id, @RequestBody UserRest userRest) {
-        return userService.updateUser(id, userRest);
+    private UserDto updateCustomerById(@PathVariable("id") Integer id, @RequestBody UserDto userDto) {
+        return userService.updateUser(userDto);
     }
 
     @RequestMapping(value = "/token", method = RequestMethod.GET)

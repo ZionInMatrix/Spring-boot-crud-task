@@ -1,10 +1,8 @@
-package cz.homeoffice.funtaskproject.config;
+package cz.homeoffice.taskproject.config;
 
-import cz.homeoffice.funtaskproject.rest.models.ErrorBodyRest;
-import cz.homeoffice.funtaskproject.services.exceptions.PersonalDataServiceException;
-import cz.homeoffice.funtaskproject.services.exceptions.UserServiceException;
 import cz.homeoffice.taskproject.rest.models.ErrorBodyDto;
-import cz.homeoffice.taskproject.services.exceptions.UserServiceException;
+import cz.homeoffice.taskproject.services.exception.PersonalDataServiceException;
+import cz.homeoffice.taskproject.services.exception.UserServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;

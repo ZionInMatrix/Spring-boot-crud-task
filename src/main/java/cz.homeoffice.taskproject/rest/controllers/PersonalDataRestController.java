@@ -1,33 +1,31 @@
 package cz.homeoffice.taskproject.rest.controllers;
 
-import cz.homeoffice.funtaskproject.rest.models.PersonalDataRest;
-import cz.homeoffice.funtaskproject.services.PersonalDataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import cz.homeoffice.taskproject.rest.models.PersonalDataDto;
+import cz.homeoffice.taskproject.services.PersonalDataService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("rest/data")
+@RequiredArgsConstructor
 @RestController
 public class PersonalDataRestController {
 
-    @Autowired
-    private PersonalDataService personalDataService;
+    private final PersonalDataService personalDataService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    private PersonalDataRest addPersonalData(@RequestBody PersonalDataRest personalDataRest) {
+    private PersonalDataDto addPersonalData(@RequestBody PersonalDataDto personalDataRest) {
         return personalDataService.addPersonalData(personalDataRest);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    private List<PersonalDataRest> getAllPersonalData() {
+    private List<PersonalDataDto> getAllPersonalData() {
         return personalDataService.getAllPersonalData();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    private PersonalDataRest getPersonalDataById(@PathVariable("id") Integer id) {
+    private PersonalDataDto getPersonalDataById(@PathVariable("id") Long id) {
         return personalDataService.getPersonalDataById(id);
     }
 
@@ -37,12 +35,12 @@ public class PersonalDataRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    private PersonalDataRest updatePersonalDataById(@PathVariable("id") Integer id, @RequestBody PersonalDataRest personalDataRest) {
-        return personalDataService.updatePersonalDataById(id, personalDataRest);
+    private PersonalDataDto updatePersonalDataById(@PathVariable("id") Long id, @RequestBody PersonalDataDto personalDataDto) {
+        return personalDataService.updatePersonalDataById(personalDataDto);
     }
 
     @RequestMapping(value = "/api/users/user/{id}", method = RequestMethod.GET)
-    public PersonalDataRest getPersonalData(@PathVariable Integer id) {
+    public PersonalDataDto getPersonalData(@PathVariable Long id) {
         return personalDataService.getPersonalDataById(id);
     }
 }

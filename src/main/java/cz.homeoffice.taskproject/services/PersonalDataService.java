@@ -1,10 +1,10 @@
-package cz.homeoffice.taskproject.services.implementations;
+package cz.homeoffice.taskproject.services;
 
 import cz.homeoffice.taskproject.convertors.PersonalDataConvertor;
 import cz.homeoffice.taskproject.entity.PersonalData;
 import cz.homeoffice.taskproject.repository.PersonalDataRepository;
 import cz.homeoffice.taskproject.rest.models.PersonalDataDto;
-import cz.homeoffice.taskproject.services.exceptions.PersonalDataServiceException;
+import cz.homeoffice.taskproject.services.exception.PersonalDataServiceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,8 +39,8 @@ public class PersonalDataService {
         return personalDataConvertor.toDto(personalDataRepository.findAll());
     }
 
-    public PersonalDataDto getPersonalDataById(Integer id) {
-        Optional<PersonalData> dataDao = personalDataRepository.findById(id);
+    public PersonalDataDto getPersonalDataById(Long id) {
+        Optional<PersonalData> dataDao = personalDataRepository.findById(id.intValue());
         if (!dataDao.isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
@@ -56,11 +56,11 @@ public class PersonalDataService {
         personalDataRepository.deleteById(id);
     }
 
-    public PersonalDataDto updatePersonalDataById(Integer id, PersonalDataDto personalDataDto) {
-        if (!personalDataRepository.findById(id).isPresent()) {
+    public PersonalDataDto updatePersonalDataById(PersonalDataDto personalDataDto) {
+        if (!personalDataRepository.findById(personalDataDto.getId().intValue()).isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
-        PersonalData dao = personalDataConvertor.toDao(id, personalDataDto);
+        PersonalData dao = personalDataConvertor.toDao(personalDataDto);
         PersonalData save = personalDataRepository.save(dao);
         return personalDataConvertor.toDto(save);
     }

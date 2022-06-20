@@ -1,4 +1,4 @@
-package cz.homeoffice.taskproject.services.exceptions;
+package cz.homeoffice.taskproject.services.exception;
 
 public class PersonalDataServiceException extends RuntimeException {
 

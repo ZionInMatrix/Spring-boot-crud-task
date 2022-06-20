@@ -25,6 +25,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "USER_NAME")
@@ -36,7 +37,7 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "accessToken")
+    @Column(name = "ACCESS_TOKEN")
     private String accessToken;
 
     @OneToOne(cascade = CascadeType.ALL)

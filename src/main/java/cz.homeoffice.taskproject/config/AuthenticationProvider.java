@@ -1,8 +1,7 @@
 package cz.homeoffice.taskproject.config;
 
-import cz.homeoffice.taskproject.services.implementations.UserService;
+import cz.homeoffice.taskproject.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,18 +18,18 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails,
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) {
+                                                  UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) {
     }
 
     @Override
     protected UserDetails retrieveUser(String userName,
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) {
+                                       UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) {
         Object token = usernamePasswordAuthenticationToken.getCredentials();
         return Optional
                 .ofNullable(token)
                 .map(String::valueOf)
                 .flatMap(userService::findByToken)
                 .orElseThrow(
-                        () -> new UsernameNotFoundException("Cannot find user with authentication token=" + token));
+                        () -> new UsernameNotFoundException("Cannot find user with authentication token = " + token));
     }
 }
