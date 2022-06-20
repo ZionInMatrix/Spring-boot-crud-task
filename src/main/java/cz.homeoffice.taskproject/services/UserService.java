@@ -13,11 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -86,7 +82,7 @@ public class UserService {
         Optional<User> user = userRepository.findByAccessToken(token);
         if (user.isPresent()) {
             User user1 = user.get();
-            org.springframework.security.core.userdetails.User newUser = new org.springframework.security.core.userdetails.User(user1.getUserName(), user1.getPassword(), true, true, true, true, AuthorityUtils.createAuthorityList("USER"));
+            org.springframework.security.core.userdetails.User newUser = new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(), true, true, true, true, AuthorityUtils.createAuthorityList("USER"));
             return Optional.of(newUser);
         }
         return Optional.empty();

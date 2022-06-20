@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
-public class PersonalDataRestController {
+public class PersonalDataController {
 
     private final PersonalDataService personalDataService;
 
@@ -29,13 +29,13 @@ public class PersonalDataRestController {
         return personalDataService.getPersonalDataById(id);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    private void deletePersonalDataById(@PathVariable("id") Integer id) {
+    @RequestMapping(value = "/delete-data/{id}", method = RequestMethod.DELETE)
+    private void deletePersonalDataById(@PathVariable("id") Long id) {
         personalDataService.deletePersonalDataById(id);
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    private PersonalDataDto updatePersonalDataById(@PathVariable("id") Long id, @RequestBody PersonalDataDto personalDataDto) {
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    private PersonalDataDto updatePersonalDataById(@RequestBody PersonalDataDto personalDataDto) {
         return personalDataService.updatePersonalDataById(personalDataDto);
     }
 }

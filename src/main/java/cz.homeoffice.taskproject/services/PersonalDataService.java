@@ -48,12 +48,12 @@ public class PersonalDataService {
         return personalDataConvertor.toDto(dataDao.get());
     }
 
-    public void deletePersonalDataById(Integer id) {
-        if (!personalDataRepository.findById(id).isPresent()) {
+    public void deletePersonalDataById(Long id) {
+        if (!personalDataRepository.findById(id.intValue()).isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
         log.info("Deleting data");
-        personalDataRepository.deleteById(id);
+        personalDataRepository.deleteById(id.intValue());
     }
 
     public PersonalDataDto updatePersonalDataById(PersonalDataDto personalDataDto) {

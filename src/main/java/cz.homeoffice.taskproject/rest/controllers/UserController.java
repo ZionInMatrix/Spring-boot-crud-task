@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class UserRestController {
+public class UserController {
 
     private final UserService userService;
 
@@ -30,13 +30,13 @@ public class UserRestController {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/access/{accessToken}", method = RequestMethod.GET)
-    public PersonalDataDto getUserPersonalDataByAccessToken(@PathVariable String accessToken) {
+    @RequestMapping(value = "/access", method = RequestMethod.GET)
+    public PersonalDataDto getUserPersonalDataByAccessToken(@RequestParam String accessToken) {
         return userService.getUserPersonalDataByAccessToken(accessToken);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    private void deleteCustomerById(@PathVariable("id") Long id) {
+    private void deleteUserById(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
     }
 
@@ -46,7 +46,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/token", method = RequestMethod.GET)
-    public String getToken(@RequestParam("userName") String username, @RequestParam("password") String password) {
+    public String getToken(@RequestParam("username") String username, @RequestParam("password") String password) {
         return userService.login(username, password);
     }
 }

@@ -2,16 +2,18 @@ package cz.homeoffice.taskproject.convertors;
 
 import cz.homeoffice.taskproject.entity.PersonalData;
 import cz.homeoffice.taskproject.rest.models.PersonalDataDto;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PersonalDataConvertor {
 
     public PersonalData toDao(PersonalDataDto dto) {
         return PersonalData.builder()
                 .id(dto.getId())
-                .birthday(dto.getDateOfBirthday())
+                .birthday(dto.getBirthday())
                 .address(dto.getAddress())
                 .phoneNumber(dto.getPhoneNumber())
                 .build();
@@ -21,7 +23,7 @@ public class PersonalDataConvertor {
         return PersonalDataDto.builder()
                 .id(dao.getId())
                 .address(dao.getAddress())
-                .dateOfBirthday(dao.getBirthday())
+                .birthday(dao.getBirthday())
                 .build();
     }
 

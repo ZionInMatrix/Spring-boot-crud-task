@@ -14,8 +14,9 @@ import java.time.LocalDate;
 public class PersonalDataDto {
 
     private Long id;
-    private LocalDate dateOfBirthday;
+    private LocalDate birthday;
     private String address;
     private String phoneNumber;
     private LocalDate dateOfCreation;
+    private LocalDate dateOfEdit;
 }

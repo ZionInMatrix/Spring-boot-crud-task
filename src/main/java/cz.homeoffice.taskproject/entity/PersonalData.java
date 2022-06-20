@@ -35,4 +35,10 @@ public class PersonalData {
 
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+
+    @Column(name = "DATE_OF_CREATION")
+    private LocalDate dateOfCreation;
+
+    @Column(name = "DATE_OF_EDIT")
+    private LocalDate dateOfEdit;
 }
