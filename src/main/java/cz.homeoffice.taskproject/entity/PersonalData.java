@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +35,8 @@ public class PersonalData {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    @Column(name = "DATE_OF_CREATION")
-    private LocalDate dateOfCreation;
+    @Column(name = "DATE_OF_CREATE")
+    private LocalDate dateOfCreate;
 
     @Column(name = "DATE_OF_EDIT")
     private LocalDate dateOfEdit;
