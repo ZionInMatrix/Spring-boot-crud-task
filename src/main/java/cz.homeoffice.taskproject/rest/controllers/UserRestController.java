@@ -14,33 +14,34 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserRestController {
 
     private final UserService userService;
 
-    @RequestMapping(value = "rest/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-user", method = RequestMethod.POST)
     private UserDto addUser(@RequestBody UserDto userDto) {
         return userService.addUser(userDto);
     }
 
-    @RequestMapping(value = "rest/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-users", method = RequestMethod.GET)
     private List<UserDto> getAllUsers() {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/api/user/data/{accessToken}", method = RequestMethod.GET)
+    @RequestMapping(value = "/access/{accessToken}", method = RequestMethod.GET)
     public PersonalDataDto getUserPersonalDataByAccessToken(@PathVariable String accessToken) {
         return userService.getUserPersonalDataByAccessToken(accessToken);
     }
 
-    @RequestMapping(value = "/rest/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     private void deleteCustomerById(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
     }
 
-    @RequestMapping(value = "/rest/user/{id}", method = RequestMethod.PUT)
-    private UserDto updateCustomerById(@PathVariable("id") Integer id, @RequestBody UserDto userDto) {
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    private UserDto updateCustomerById(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
         return userService.updateUser(userDto);
     }
 
