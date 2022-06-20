@@ -24,4 +24,4 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 ```
 
-### 4. Please install Tomcat to run the application locally
+### 4. Install Tomcat to run the application locally
