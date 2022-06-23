@@ -5,15 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,12 +16,15 @@ import javax.persistence.Table;
 @Entity
 @Builder
 @Table(name = "USER")
-public class User {
+public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "USER_NAME")
     private String username;
@@ -34,13 +32,22 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "EMAIL")
-    private String email;
+    @Column(name = "SYS_DATE_CREATE")
+    private LocalDateTime sysDateCreate;
 
-    @Column(name = "ACCESS_TOKEN")
-    private String accessToken;
+    @Column(name = "SYS_DATE_EDIT")
+    private LocalDateTime sysDateEdit;
+
+    @Column(name = "SYS_LOGIN_ID_CREATE")
+    private String sysLoginIdCreate;
+
+    @Column(name = "SYS_LOGIN_ID_EDIT")
+    private String sysLoginIdEdit;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSONAL_DATA", referencedColumnName = "ID")
     private PersonalData personalData;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
 }

@@ -32,12 +32,12 @@ public class PersonalData {
     @Column(name = "ADDRESS")
     private String address;
 
+    @Column(name = "POSTCODE")
+    private String postcode;
+
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    @Column(name = "DATE_OF_CREATE")
-    private LocalDate dateOfCreate;
-
-    @Column(name = "DATE_OF_EDIT")
-    private LocalDate dateOfEdit;
+    @Column(name = "EMAIL")
+    private String email;
 }
