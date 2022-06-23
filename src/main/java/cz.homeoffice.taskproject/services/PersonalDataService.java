@@ -9,11 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Slf4j
@@ -26,8 +22,6 @@ public class PersonalDataService {
     private final PersonalDataConvertor personalDataConvertor;
 
     public PersonalDataDto addPersonalData(PersonalDataDto personalDataDto) {
-        LocalDateTime ldt = LocalDateTime.now();
-        personalDataDto.setDateOfCreation(LocalDate.parse(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)));
         PersonalData personalData = personalDataConvertor.toEntity(personalDataDto);
         PersonalData savedDao = personalDataRepository.save(personalData);
         log.info("Adding user " + personalData);
