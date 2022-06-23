@@ -15,7 +15,5 @@ public class UserDataDto {
     private String name;
     private String username;
     private String password;
-    private String email;
-    private String accessToken;
     private PersonalDataDto personalData;
 }

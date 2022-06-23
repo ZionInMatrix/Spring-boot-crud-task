@@ -10,20 +10,25 @@ import java.util.List;
 @Service
 public class PersonalDataConvertor {
 
-    public PersonalData toDao(PersonalDataDto dto) {
+    public PersonalData toEntity(PersonalDataDto dto) {
         return PersonalData.builder()
                 .id(dto.getId())
                 .birthday(dto.getBirthday())
                 .address(dto.getAddress())
                 .phoneNumber(dto.getPhoneNumber())
+                .postcode(dto.getPostcode())
+                .email(dto.getEmail())
                 .build();
     }
 
     public PersonalDataDto toDto(PersonalData dao) {
         return PersonalDataDto.builder()
                 .id(dao.getId())
-                .address(dao.getAddress())
                 .birthday(dao.getBirthday())
+                .address(dao.getAddress())
+                .phoneNumber(dao.getPhoneNumber())
+                .postcode(dao.getPostcode())
+                .email(dao.getEmail())
                 .build();
     }
 
@@ -35,8 +40,8 @@ public class PersonalDataConvertor {
         return dataRests;
     }
 
-    public PersonalData toDao(Long id, PersonalDataDto dataRest) {
-        PersonalData dao = toDao(dataRest);
+    public PersonalData toEntity(Long id, PersonalDataDto dataRest) {
+        PersonalData dao = toEntity(dataRest);
         dao.setId(id);
         return dao;
     }

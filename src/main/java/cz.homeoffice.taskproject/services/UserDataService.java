@@ -80,7 +80,7 @@ public class UserDataService {
         userData.getRoles().add(role);
     }
 
-    public UserDataDto getUser(String username) {
+    public UserDataDto getUserByUsername(String username) {
         log.info("Fetching user {}", username);
         return userConvertor.toDto(userDataRepository.findByUsername(username));
     }

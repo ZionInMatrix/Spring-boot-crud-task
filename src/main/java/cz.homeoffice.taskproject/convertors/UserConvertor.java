@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserConvertor {
 
-    public UserData toDao(UserDataDto dto) {
+    public UserData toEntity(UserDataDto dto) {
         return UserData.builder()
                 .id(dto.getId())
                 .name(dto.getName())
@@ -16,12 +16,12 @@ public class UserConvertor {
                 .build();
     }
 
-    public UserDataDto toDto(UserData entity) {
+    public UserDataDto toDto(UserData dao) {
         return UserDataDto.builder()
-                .id(entity.getId())
-                .username(entity.getUsername())
-                .username(entity.getUsername())
-                .password(entity.getPassword())
+                .id(dao.getId())
+                .username(dao.getUsername())
+                .username(dao.getUsername())
+                .password(dao.getPassword())
                 .build();
     }
 }

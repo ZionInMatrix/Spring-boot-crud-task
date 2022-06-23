@@ -28,7 +28,7 @@ public class PersonalDataService {
     public PersonalDataDto addPersonalData(PersonalDataDto personalDataDto) {
         LocalDateTime ldt = LocalDateTime.now();
         personalDataDto.setDateOfCreation(LocalDate.parse(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)));
-        PersonalData personalData = personalDataConvertor.toDao(personalDataDto);
+        PersonalData personalData = personalDataConvertor.toEntity(personalDataDto);
         PersonalData savedDao = personalDataRepository.save(personalData);
         log.info("Adding user " + personalData);
         return personalDataConvertor.toDto(savedDao);
@@ -60,7 +60,7 @@ public class PersonalDataService {
         if (!personalDataRepository.findById(personalDataDto.getId().intValue()).isPresent()) {
             throw new PersonalDataServiceException("The id number isn't found");
         }
-        PersonalData dao = personalDataConvertor.toDao(personalDataDto);
+        PersonalData dao = personalDataConvertor.toEntity(personalDataDto);
         PersonalData save = personalDataRepository.save(dao);
         return personalDataConvertor.toDto(save);
     }

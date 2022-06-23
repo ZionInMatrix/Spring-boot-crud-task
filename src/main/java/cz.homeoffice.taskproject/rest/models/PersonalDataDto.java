@@ -16,7 +16,7 @@ public class PersonalDataDto {
     private Long id;
     private LocalDate birthday;
     private String address;
+    private String postcode;
     private String phoneNumber;
-    private LocalDate dateOfCreation;
-    private LocalDate dateOfEdit;
+    private String email;
 }
